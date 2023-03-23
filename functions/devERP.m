@@ -13,22 +13,17 @@ display = questdlg(['Hello! Thank you for using DevERP Simplified. ' ...
     'and you will be directed to further instructions on how to start using DevERP Simplified.'], ...
     'Welcome Message', 'READY', 'NOTREADY', 'DEFAULT');
 
-display
-
-%%
-
 if strcmp(display, 'NOTREADY')
 
-msg = questdlg(['A link to DevERP Simplified GitHub will display momentarily. Please click OK to continue'] ...
-  ,'Resources', 'OK', 'DEFAULT')
+msg = questdlg(['You have selected NOTREADY.' ...
+    'Would you like to be redirected to DevERP Simplified instructions located on GitHub? ' ...
+    'Press YES if you would like go to GitHub. ' ...
+    'Press NO if you wish to remain in MATLAB.'] ...
+  ,'Resources', 'YES', 'NO', 'DEFAULT')
 
-    if strcmp(msg, 'OK')
+    if strcmp(msg, 'YES')
 
-    fig = uifigure;
-    hlink = uihyperlink(fig);
-    hlink.Position = [200 200 200 200];
-    hlink.Text = 'DevERP';
-    hlink.URL = 'https://github.com/w-decker/DevERP-Simplified.git';
+        web('https://github.com/w-decker/DevERP-Simplified.git');
 
     end
 
