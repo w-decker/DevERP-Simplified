@@ -7,7 +7,7 @@
    % lowpass filter value (in Hz) (must be preceeded by 'L'
    % (optional) If you wish to interact with the UI to enter in your filter parameters, type 'UI' as the
    % function input only.
-   % Example: dev_filterparams('UI') OR dev_filterparams('H', 30, 'L', 0.1)
+   % Example: dev_filterparams('UI') OR dev_filterparams('H', 0.1, 'L', 30)
 
 %%
 
