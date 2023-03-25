@@ -15,13 +15,15 @@ if strcmp(display, 'HELP')
 
     web('https://github.com/w-decker/DevERP-Simplified.git')
 
+else 
+
+    subjectsfile = uigetfile('*.xlsx');
+    [d,s,r] = xlsread(subjectsfile);
+    
+    subjects = r;
+    numsubjects = (length(s));
+    
+    assignin('base', 'subjects', subjects)
+    assignin('base', 'numsubjects', numsubjects)
+
 end
-
-subjectsfile = uigetfile('*.xlsx');
-[d,s,r] = xlsread(subjectsfile);
-
-subjects = r;
-numsubjects = (length(s));
-
-assignin('base', 'subjects', subjects)
-assignin('base', 'numsubjects', numsubjects)

@@ -10,7 +10,7 @@
 %%
 function dev_subs2run (subjects, varargin)
 
-if naragin > 0 && strcmp(varargin{1}, 'UI')
+if nargin > 0 && strcmp(varargin{1}, 'UI')
 
     uiwait(msgbox(['You will be selecting which files to process through DevERP Simplified. ' ...
         'This is done by choosing the first file you wish to analyze and then the last file you wish to analyze.' ...
