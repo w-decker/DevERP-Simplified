@@ -33,11 +33,20 @@ if nargin > 0 && strcmp(varargin{1}, 'UI')
 
 else 
 
-    subject_start = varargin{1}
-    subject_end = varargin{2}
+    subject_start = double([]);
+    subject_end = double([]);
 
-    assignin('base', 'subject_start', subject_start)
-    assignin('base', 'subject_end', subject_end)
+    for i = 1:2:numel(varargin)
+        switch varargin{i}
+            case 'start'
+                subject_start = varargin{i + 1};
+            case 'end'
+                subject_end = varargin{i + 1}
+        end
+    end
+            
+        assignin('base', 'subject_start', subject_start)
+        assignin('base', 'subject_end', subject_end)
 
 end
     
