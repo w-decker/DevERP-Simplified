@@ -34,10 +34,10 @@ dev_IDsubjects
 
 %% Step 3: Choosing which subjects to run
 
-dev_subs2run
+dev_subs2run()
 
 %% Step 4: Establish filter parameters
 
-dev_filterparams
+dev_filterparams('UI')
 
 %%

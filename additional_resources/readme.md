@@ -8,7 +8,7 @@ If you notice, there are a list of strings following this pattern.
 
 ```
 for i = 1:30 % 30 used as an example
-    fprintf('sub-%03d\n', i+1)
+    fprintf('sub-%d', i+1)
 end
 ```
 This is a simple and syntactic way of looking at how the naming scheme in the example subjectlist is structured. Importantly, the naming scheme you choose matters. The string that you use to identify your files (in this case, 'sub') will need to be inputted later. You must make sure that all of your raw data files consistently follow a naming scheme without deviations. If MATLAB encounters a file that does not match the name you gave it, MATLAB will produce an error.
