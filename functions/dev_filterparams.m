@@ -13,50 +13,36 @@
 
 function dev_filterparams (varargin)
 
-if nargin == strcmp(varargin{1}, 'UI')
+if nargin >0 && strcmp(varargin{1}, 'UI')
 
-uiwait(msgbox('You will be selecting your highpass and lowpass filters.'))
-
-prompt = {'Choose your highpass filter (in Hz)', 'choose your lowpass filter (in Hz).'};
-filters = inputdlg(prompt)
-
-highpass = str2double(cellstr(filters([1])));
-lowpass = str2double(cellstr(filters([2])));
-
-assignin('base', 'highpass', highpass)
-assignin('base', 'lowpass', lowpass)
+    uiwait(msgbox('You will be selecting your highpass and lowpass filters.'))
+    
+    prompt = {'Choose your highpass filter (in Hz)', 'choose your lowpass filter (in Hz).'};
+    filters = inputdlg(prompt)
+    
+    highpass = str2double(cellstr(filters([1])));
+    lowpass = str2double(cellstr(filters([2])));
+    
+    assignin('base', 'highpass', highpass)
+    assignin('base', 'lowpass', lowpass)
 
 else 
 
     if nargin ~=4
-
         disp(['This function requires 4 inputs. Please type in your highpass and lowpass filters each preceeded' ...
             'with the string H and L respectively.'])
     end
 
-    filtertype1 = varargin{1};
-    value1 = varargin{2};
-    filtertype2 = varargin{3};
-    value2 = varargin{4};
-    
-    if filtertype1 == 'H'
+   highpass = double([])
+   lowpass = double([])
 
-        highpass = value1;
-
-    elseif filtertype1 == 'L'
-
-        lowpass = value1;
-
-    end
-
-    if filtertype2 == 'H'
-
-        highpass = value2;
-
-    elseif filtertype2 == 'L'
-
-        lowpass = value2;
-
+    for i = 1:2:numel(varargin)
+        switch varargin{i}
+            case 'H'
+                highpass = varargin{i+1};
+            case 'L'
+                lowpass = varargin{i+1};
+        end 
     end
 
 assignin('base', 'highpass', highpass)
