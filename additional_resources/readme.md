@@ -13,7 +13,7 @@ end
 ```
 This is a simple and syntactic way of looking at how the naming scheme in the example subjectlist is structured. Importantly, the naming scheme you choose matters. The string that you use to identify your files (in this case, 'sub') will need to be inputted later. You must make sure that all of your raw data files consistently follow a naming scheme without deviations. If MATLAB encounters a file that does not match the name you gave it, MATLAB will produce an error.
 
-Another important component to the subject list is the left most column that contains numbers in ascending order. This is the row or position that your file is in within the subject list. For example, in our example subjectlist, sub-005 is in position 5. When running the function `dev_subs2run`, the `start` and `end` parameters rely on the _position_ that your files are in _not_ by which number they are in the naming scheme. For example, if I want to run sub-011 through sub-016, I would write the function like so.
+Another important component to the subject list is the left most column that contains numbers in ascending order. This is the row or position that your file is in within the subject list. For example, in our example subjectlist, sub-005 is in position 5. When running the function `dev_subs2run`, the `'start'` and `'end'` parameters rely on the _position_ that your files are in _not_ by which number they are in the naming scheme. For example, if I want to run sub-011 through sub-016, I would write the function like so.
 ```
 dev_subs2run(subjects, 'start', 8, 'end', 13)
 ```
