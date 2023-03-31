@@ -28,16 +28,20 @@ dev_erpdir
 
 dev_makedirs % reccommended
 
+% option 3
+
+dev_makecustomdirs
+
 %% Step 2: Establish subject list
 
 dev_IDsubjects
 
 %% Step 3: Choosing which subjects to run
 
-dev_subs2run()
+dev_subs2run
 
 %% Step 4: Establish filter parameters
 
-dev_filterparams('UI')
+dev_filterparams
 
 %%
