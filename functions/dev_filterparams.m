@@ -2,51 +2,61 @@
 % Author: Will Decker
 % Usage: Creating your filtering parameters
 % Inputs:
-   % Filter type ('H' = highpass, 'L' = lowpass)
-   % highpass filter value (in Hz) (must be preceeded by 'H'
-   % lowpass filter value (in Hz) (must be preceeded by 'L'
-   % (optional) If you wish to interact with the UI to enter in your filter parameters, type 'UI' as the
-   % function input only.
-   % Example: dev_filterparams('UI') OR dev_filterparams('H', 0.1, 'L', 30)
+   % 'UI'                          -- String 'UI' opens up user interface and executes codes using the UI
+   % OR
+   % 'H'                           -- String 'H' followed by the value of the highpass filter (in Hz)
+   % 'L'                           -- String 'L' followed by the value of the lowpass filter (in Hz)
+
+   % See https://github.com/w-decker/DevERP-Simplified/tree/main/functions or type devHELP in the command window.
+
 
 %%
 
-function dev_filterparams (varargin)
+function [params, highpass_filter, lowpass_filter] = dev_filterparams (varargin)
 
-if nargin >0 && strcmp(varargin{1}, 'UI')
+    % load in params structure
+    params = evalin('base', 'params') % call params structure
 
-    uiwait(msgbox('You will be selecting your highpass and lowpass filters.'))
+    % if input arg is 'UI' allow user to continue executing the function
+    % using the UI
+    if nargin >0 && strcmp(varargin{1}, 'UI')
+
+        uiwait(msgbox('You will be selecting your highpass and lowpass filters.'))
+        
+        prompt = {'Choose your highpass filter (in Hz)', 'choose your lowpass filter (in Hz).'};
+        filters = inputdlg(prompt)
+        
+        highpass = str2double(cellstr(filters([1])));
+        lowpass = str2double(cellstr(filters([2])));    
+    else 
+        
+        % if the required 4 args are not put in display error message
+        if nargin ~=4
+            error(['This function requires 4 inputs. Please type in your highpass and lowpass filters each preceeded ' ...
+                'with the string H and L respectively.'])
+        else 
     
-    prompt = {'Choose your highpass filter (in Hz)', 'choose your lowpass filter (in Hz).'};
-    filters = inputdlg(prompt)
-    
-    highpass = str2double(cellstr(filters([1])));
-    lowpass = str2double(cellstr(filters([2])));
-    
+           highpass = double([])
+           lowpass = double([])
+        
+           % assign corresponding values to highpass and lowpass filters
+            for i = 1:2:numel(varargin)
+                switch varargin{i}
+                    case 'H'
+                        highpass = varargin{i+1};
+                    case 'L'
+                        lowpass = varargin{i+1};
+                end 
+            end  
+        end
+
+    end
+
+    % input highpass and lowpass filters into params structure
+    params = setfield(params, 'highpass_filter', highpass);
+    params = setfield(params, 'lowpass_filter', lowpass);
+    assignin('base', 'params', params);
+
+    % input highpass and lowpass filters into workspace
     assignin('base', 'highpass', highpass)
-    assignin('base', 'lowpass', lowpass)
-
-else 
-
-    if nargin ~=4
-        disp(['This function requires 4 inputs. Please type in your highpass and lowpass filters each preceeded' ...
-            'with the string H and L respectively.'])
-    end
-
-   highpass = double([])
-   lowpass = double([])
-
-    for i = 1:2:numel(varargin)
-        switch varargin{i}
-            case 'H'
-                highpass = varargin{i+1};
-            case 'L'
-                lowpass = varargin{i+1};
-        end 
-    end
-
-assignin('base', 'highpass', highpass)
-assignin('base', 'lowpass', lowpass)    
-
-end
-
+    assignin('base','lowpass', lowpass)

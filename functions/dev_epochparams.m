@@ -2,38 +2,46 @@
 % Author: Will Decker
 % Usage: Creating your epoching parameters
 % Inputs:
-   % epoch baseline (in ms)
-   % epoch end (in ms)
-   % (optional) If you wish to interact with the UI to enter in your epoch parameters, type 'UI' as the
-   % function input only.
-   % Example: dev_epochparams('UI') OR dev_epochparams(-200.00, 800.00)
+   % 'UI'                          -- String 'UI' opens up user interface and executes codes using the UI
+   % OR
+   % 'baseline'                    -- String 'baseline' followed by the value of the epoch baseline (in ms)
+   % 'end'                         -- String 'end' followed by the value of the epoch end (in ms)
+
+  % See https://github.com/w-decker/DevERP-Simplified/tree/main/functions or type devHELP in the command window.
+
 
 %%
 function dev_epochparams (varargin)
 
-if nargin > 0 && strcmp(varargin{1}, 'UI')
-
-    uiwait(msgbox('You will be selecting your epoch baseline and epoch end.'))
+    if nargin > 0 && strcmp(varargin{1}, 'UI') % if 'UI' is parameter, execute code through UI
+        uiwait(msgbox('You will be selecting your epoch baseline and epoch end.'))
+        
+        prompt = {'Choose your epoch baseline', 'choose your epoch end.'};
+        epochs = inputdlg(prompt);
+        
+        epoch_baseline = str2double(cellstr(epochs([1])));
+        epoch_end = str2double(cellstr(epochs([2])));
+        
+        assignin('base', 'epoch_baseline', epoch_baseline)
+        assignin('base', 'epoch_end', epoch_end)
     
-    prompt = {'Choose your epoch baseline', 'choose your epoch end.'};
-    epochs = inputdlg(prompt)
+    else % allow user to input custom values as epoch baseline and end
+        epoch_baseline = double([]);
+        epoch_end = double([]);
     
-    epoch_baseline = str2double(cellstr(epochs([1])));
-    epoch_end = str2double(cellstr(epochs([2])));
+        for i = 1:2:numel(varargin)
+            switch varargin{i}
+                case 'baseline'
+                    epoch_baseline = varargin{i+1};
+                case 'end'
+                    epoch_end = varargin {i+1};
+            end
+        end
     
-    assignin('base', 'epoch_baseline', epoch_baseline)
-    assignin('base', 'epoch_end', epoch_end)
-
-else
-
-    disp(['Please type your epoch baseline (in ms) and epoch end (in ms) or type UI to allow DevERP simplified' ...
-    'to walk you through choosing your epoch baseline and epoch end.'])
-
-    epoch_baseline = varargin{1}
-    epoch_end = varargin{2}
-
-    assignin('base', 'epoch_baseline', epoch_baseline)
-    assignin('base', 'epoch_end', epoch_end)
-
-end
+        disp(['Your epoch baseline is ', num2str(epoch_baseline), 'ms and your epoch end is ', num2str(epoch_end), 'ms.'])
+    
+        assignin('base', 'epoch_baseline', epoch_baseline)
+        assignin('base', 'epoch_end', epoch_end)
+    
+    end
 

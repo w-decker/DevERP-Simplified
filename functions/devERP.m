@@ -25,8 +25,7 @@ function [params] = devERP(~)
         'Press NO if you wish to remain in MATLAB.'] ...
       ,'Resources', 'YES', 'NO', 'DEFAULT')
     
-        if strcmp(msg, 'YES')
-    
+        if strcmp(msg, 'YES') % take user to website/documentation
             web('https://github.com/w-decker/DevERP-Simplified.git');
         end    
     end
