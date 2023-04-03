@@ -142,7 +142,7 @@ This function requires _multiple_ inputs.
 Below are three examples for implementing this function.
 
 ```
-dev_mara('UI')
+dev_mara('UI') % This opens the UI
 
 dev_mara('threshold', 0.6, 'ALL') % remove ALL components that are 0.60 liklely or higher to be an artifact.
 
