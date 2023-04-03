@@ -89,9 +89,9 @@ The the value proceeding 'start' and 'end' must be the number/position that the 
 Below are two examples of implementing this function.
 
 ```
-dev_subs2run(subjects, 'UI') % This calls the UI.
+dev_subs2run('UI') % This calls the UI.
 
-dev_subs2run(subjects, 'start', 1, 'end', 15) % This tells that analysis pipeline to only run files 1 though 15.
+dev_subs2run('start', 1, 'end', 15) % This tells that analysis pipeline to only run files 1 though 15.
 ```
 
 Additional details and information necessary to understanding this function are also located in **additional resources** folder.
@@ -134,14 +134,17 @@ The function `dev_mara` allows users to identify and remove components using MAR
 
 This function requires _multiple_ inputs.
 
-1. `threshold` The probability threshold to use when processing mara. (0.00 - 1.00). MARA marks each components with a probabililty value, which tells one the likelihood that the component is a true artifact. To standardize the process, DevERP Simplified has you define a threshold in which the function we've create removes every component that is >= the user defined threshold. 
-2. `'false'` If you wish to evaluate ALL components, type the string 'false'. This function defaults to evaluation the first 10 components ONLY.
-3. `'true'` If you wish to evaluate the first 10 components ONLY, type the string 'true'.
+1. `'UI'` Calls the UI to ain in choosing your threshold. When the UI is openend, you will be prompted to select your threshold and whether you wish to evaluate ALL components or just the first 10.
+2. `'threshold', 0.6` The probability threshold to use when processing mara. (0.00 - 1.00). MARA marks each components with a probabililty value, which tells one the likelihood that the component is a true artifact. To standardize the process, DevERP Simplified has you define a threshold in which the function we've create removes every component that is >= the user defined threshold. To idenfity your threshold, type the string 'threshold' followed by the value of your baseline. 0.6 is just an example.
+3. `'false'` If you wish to evaluate ALL components, type the string 'false'. This function defaults to evaluation the first 10 components ONLY.
+4. `'true'` If you wish to evaluate the first 10 components ONLY, type the string 'true'.
 
-Below are two examples for implementing this function.
+Below are three examples for implementing this function.
 
 ```
-dev_mara(0.6, 'false') % remove ALL components that are 0.60 liklely or higher to be an artifact.
+dev_mara('UI')
 
-dev_mara(0.6, 'true') % remove artifacts within the first 10 marked components ONLY that are 0.60 likely or higher to be an artifact.
+dev_mara('threshold', 0.6, 'ALL') % remove ALL components that are 0.60 liklely or higher to be an artifact.
+
+dev_mara('threshold', 0.6, 'TEN') % remove artifacts within the first 10 marked components ONLY that are 0.60 likely or higher to be an artifact.
 ```
