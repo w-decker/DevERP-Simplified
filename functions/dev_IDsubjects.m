@@ -30,13 +30,14 @@ function dev_IDsubjects (varargin)
         
         assignin('base', 'subjects', subjects)
         assignin('base', 'numsubjects', numsubjects)  
-    else % allow users to type path to excel file as input 
-        subjectsfile = varargin{1}
-        [d,s,r] = xlsread(subjectsfile)
-        
-        subjects = r;
-        numsubjects = (length(s));
-        
-        assignin('base', 'subjects', subjects)
-        assignin('base', 'numsubjects', numsubjects)  
+    else subjectsfile = varargin{1}
+        if exist(subjectsfile, 'file') == 2 % allow users to type path to excel file as input 
+            [d,s,r] = xlsread(subjectsfile)
+            
+            subjects = r;
+            numsubjects = (length(s));
+            
+            assignin('base', 'subjects', subjects)
+            assignin('base', 'numsubjects', numsubjects) 
+        end
     end
