@@ -136,8 +136,8 @@ This function requires _multiple_ inputs.
 
 1. `'UI'` Calls the UI to ain in choosing your threshold. When the UI is openend, you will be prompted to select your threshold and whether you wish to evaluate ALL components or just the first 10.
 2. `'threshold', 0.6` The probability threshold to use when processing mara. (0.00 - 1.00). MARA marks each components with a probabililty value, which tells one the likelihood that the component is a true artifact. To standardize the process, DevERP Simplified has you define a threshold in which the function we've create removes every component that is >= the user defined threshold. To idenfity your threshold, type the string 'threshold' followed by the value of your baseline. 0.6 is just an example.
-3. `'ALL'` If you wish to evaluate ALL components, type the string 'false'. This function defaults to evaluation the first 10 components ONLY.
-4. `'TEN'` If you wish to evaluate the first 10 components ONLY, type the string 'true'.
+3. `'ALL'` If you wish to evaluate ALL components, type the string 'ALL'. This function defaults to evaluation the first 10 components ONLY.
+4. `'TEN'` If you wish to evaluate the first 10 components ONLY, type the string 'TEN'.
 
 Below are three examples for implementing this function.
 
