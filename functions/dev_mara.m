@@ -32,8 +32,7 @@ function [params, EEG, com] = dev_mara(varargin)
             for s = subject_start : subject_end
                 subject = subjects{s}
                 % establish data objects
-                [ALLEEG, EEG, CURRENTSET, ALLCOM] = eeglab;
-                eeglab('redraw');
+                get_eeglab
                 
                 % load ICA set
                 EEG = pop_loadset ([subject '_ICA.set'], workdir);
@@ -57,9 +56,8 @@ function [params, EEG, com] = dev_mara(varargin)
             for s = subject_start : subject_end
                 subject = subjects{s};
                 % establish data objects
-                [ALLEEG, EEG, CURRENTSET, ALLCOM] = eeglab;
-                eeglab('redraw');
-                
+                get_eeglab
+
                 % load ICA set
                 EEG = pop_loadset ([subject '_ICA.set'], workdir);
                 [ALLEEG, EEG, CURRENTSET] = eeg_store( ALLEEG, EEG, 0 );
@@ -120,8 +118,7 @@ function [params, EEG, com] = dev_mara(varargin)
             for s = subject_start : subject_end
                 subject = subjects{s};
                 % establish data objects
-                [ALLEEG, EEG, CURRENTSET, ALLCOM] = eeglab;
-                eeglab('redraw');
+                get_eeglab
                 
                 % load ICA set
                 EEG = pop_loadset ([subject '_ICA.set'], workdir);
