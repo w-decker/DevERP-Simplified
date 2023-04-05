@@ -31,6 +31,7 @@ function [params, EEG, com] = dev_mara(varargin)
         if strcmp(components2eval, 'ALL')
             for s = subject_start : subject_end
                 subject = subjects{s}
+
                 % establish data objects
                 get_eeglab
                 
@@ -55,6 +56,7 @@ function [params, EEG, com] = dev_mara(varargin)
         elseif strcmp(components2eval, 'TEN')
             for s = subject_start : subject_end
                 subject = subjects{s};
+
                 % establish data objects
                 get_eeglab
 
@@ -91,9 +93,9 @@ function [params, EEG, com] = dev_mara(varargin)
         if nargin > 0 && strcmp(varargin(3), 'ALL') % evaluate ALL components
             for s = subject_start : subject_end
                 subject = subjects{s};
+
                 % establish data objects
-                [ALLEEG, EEG, CURRENTSET, ALLCOM] = eeglab;
-                eeglab('redraw');
+                get_eeglab
                 
                 % load ICA set
                 EEG = pop_loadset ([subject '_ICA.set'], workdir);
@@ -117,6 +119,7 @@ function [params, EEG, com] = dev_mara(varargin)
         elseif nargin > 0 && strcmp(varargin(3), 'TEN') % evaluate only first 10 components
             for s = subject_start : subject_end
                 subject = subjects{s};
+                
                 % establish data objects
                 get_eeglab
                 
