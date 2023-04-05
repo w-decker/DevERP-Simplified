@@ -9,7 +9,6 @@
 
 function get_eeglab(~)
 
-    eeglab nogui
     [ALLEEG, EEG, CURRENTSET, ALLCOM] = eeglab;
     eeglab redraw
     
