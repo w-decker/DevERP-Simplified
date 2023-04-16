@@ -10,9 +10,6 @@
 %%
 function dev_erpdir(~)
 
-    % get params
-    get_params
-
     % display message box
     uiwait(msgbox('Select the folder with your ERP data and output. This will serve as your ERP directory','modal'));
     erpdir = uigetdir; % initialize UI to navigate to erpdir

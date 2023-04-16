@@ -10,8 +10,6 @@
 %%
 function dev_txtdir(~)
 
-    % get params
-    get_params
 
     % display message box
     uiwait(msgbox('Select the folder with your text data and output. This will serve as your text directory','modal'));

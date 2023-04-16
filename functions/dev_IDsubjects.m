@@ -11,9 +11,6 @@
 %%
 function dev_IDsubjects (varargin)
 
-    % get params
-    get_params
-
     if nargin > 0 && strcmp(varargin{1}, 'UI')
         % display
         display = questdlg(['Please select your subject list. Note: this file must be in Excel (.xslx) format.' ...

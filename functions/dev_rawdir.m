@@ -9,8 +9,6 @@
 %%
 function dev_rawdir(~)
 
-    % get params
-    get_params
 
     % display message box
     uiwait(msgbox('Select the folder with your raw data. This will serve as your raw directory','modal'));
