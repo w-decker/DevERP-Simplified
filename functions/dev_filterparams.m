@@ -14,8 +14,14 @@
 
 function [params, highpass_filter, lowpass_filter] = dev_filterparams (varargin)
 
-    % get params
-    get_params
+    % if params struc already exists
+    if evalin('base', 'exist("params", "var")') == 1
+        params = evalin('base', 'params');
+    % if params struc does not exist
+    elseif evalin('base', 'exist("params", "var")') == 0
+        params = struct();
+        assignin('base', 'params', params)
+    end
 
     % if input arg is 'UI' allow user to continue executing the function
     % using the UI
@@ -53,10 +59,16 @@ function [params, highpass_filter, lowpass_filter] = dev_filterparams (varargin)
     end
 
     % input highpass and lowpass filters into params structure
-    params = setfield(params, 'highpass_filter', highpass);
-    params = setfield(params, 'lowpass_filter', lowpass);
+    params = setfield(params, 'highpass', highpass);
+    params = setfield(params, 'lowpass', lowpass);
     assignin('base', 'params', params);
 
     % input highpass and lowpass filters into workspace
     assignin('base', 'highpass', highpass)
     assignin('base','lowpass', lowpass)
+
+    varargout{1} = params;
+    
+    % output the epoch baseline and epoch end variables
+    highpass_filter = params.highpass;
+    lowpass_filter = params.lowpass;

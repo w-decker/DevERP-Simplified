@@ -11,10 +11,16 @@
 
 
 %%
-function dev_epochparams (varargin)
+function [params, epoch_baseline, epoch_end] = dev_epochparams (varargin)
 
-    % get params
-    get_params
+    % if params struc already exists
+    if evalin('base', 'exist("params", "var")') == 1
+        params = evalin('base', 'params');
+    % if params struc does not exist
+    elseif evalin('base', 'exist("params", "var")') == 0
+        params = struct();
+        assignin('base', 'params', params)
+    end
 
     if nargin > 0 && strcmp(varargin{1}, 'UI') % if 'UI' is parameter, execute code through UI
         uiwait(msgbox('You will be selecting your epoch baseline and epoch end.'))
@@ -48,3 +54,13 @@ function dev_epochparams (varargin)
     
     end
 
+    % input highpass and lowpass filters into params structure
+    params = setfield(params, 'epoch_baseline', epoch_baseline);
+    params = setfield(params, 'epoch_end', epoch_end);
+    assignin('base', 'params', params);
+
+    varargout{1} = params;
+    
+    % output the epoch baseline and epoch end variables
+    epoch_baseline = params.epoch_baseline;
+    epoch_end = params.epoch_end;

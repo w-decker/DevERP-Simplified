@@ -14,8 +14,14 @@
 
 function [params, EEG, com] = dev_mara(varargin)
 
-    % get params
-    get_params
+    % if params struc already exists
+    if evalin('base', 'exist("params", "var")') == 1
+        params = evalin('base', 'params');
+    % if params struc does not exist
+    elseif evalin('base', 'exist("params", "var")') == 0
+        params = struct();
+        assignin('base', 'params', params)
+    end
    
     % requried for EEGLAB
     EEG = [];
@@ -154,4 +160,10 @@ function [params, EEG, com] = dev_mara(varargin)
     % input highpass and lowpass filters into workspace
     assignin('base', 'threshold', threshold);
     assignin('base','artifacts_removes', remove_components);
+
+    varargout{1} = params;
+    
+    % output the epoch baseline and epoch end variables
+    threshold = params.threshold;
+    remove_components = params.remove_components;
 
