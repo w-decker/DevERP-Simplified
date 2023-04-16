@@ -8,13 +8,13 @@
 
 %%
 
-function get_params(~)
+function [params] = get_params
 
     % if params struc already exists
     if evalin('base', 'exist("params", "var")') == 1
         params = evalin('base', 'params');
     % if params struc does not exist
     elseif evalin('base', 'exist("params", "var")') == 0
-        params = struct()
+        params = struct();
         assignin('base', 'params', params)
     end
