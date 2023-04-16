@@ -14,8 +14,10 @@
 
 function [params, EEG, com] = dev_mara(varargin)
 
-    % load in params structure
-    params = evalin('base', 'params'); % call params structure
+    % get params
+    get_params
+   
+    % requried for EEGLAB
     EEG = [];
     com = ' ';
 

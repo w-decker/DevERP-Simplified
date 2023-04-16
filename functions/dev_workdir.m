@@ -9,6 +9,9 @@
 %%
 function dev_workdir(~)
 
+    % get params
+    get_params
+    
     % display message box
     uiwait(msgbox('Select the folder for your working data analysis. This will serve as your working directory','modal'));
     

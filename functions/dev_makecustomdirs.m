@@ -14,6 +14,9 @@
 %%
 function dev_makecustomdirs (varargin)
 
+    % get params
+    get_params
+
     % initiate UI
     if nargin >0 && strcmp(varargin{1}, 'UI')
     

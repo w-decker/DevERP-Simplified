@@ -13,6 +13,9 @@
 %%
 function dev_epochparams (varargin)
 
+    % get params
+    get_params
+
     if nargin > 0 && strcmp(varargin{1}, 'UI') % if 'UI' is parameter, execute code through UI
         uiwait(msgbox('You will be selecting your epoch baseline and epoch end.'))
         

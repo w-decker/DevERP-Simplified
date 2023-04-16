@@ -13,6 +13,9 @@
 %%
 function dev_subs2run (varargin)
 
+    % get params
+    get_params
+
     if evalin('base', 'exist("subjects", "var")') == 1
         subjects1 = evalin('base', 'subjects');
     else

@@ -14,8 +14,8 @@
 
 function [params, highpass_filter, lowpass_filter] = dev_filterparams (varargin)
 
-    % load in params structure
-    params = evalin('base', 'params') % call params structure
+    % get params
+    get_params
 
     % if input arg is 'UI' allow user to continue executing the function
     % using the UI
