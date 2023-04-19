@@ -14,7 +14,7 @@
 function dev_subs2run (varargin)
 
     if evalin('base', 'exist("subjects", "var")') == 1
-        subjects1 = evalin('base', 'subjects');
+        subjects = evalin('base', 'subjects');
     else
         error('Variable ''subjects'' not found in the workspace.');
     end
@@ -38,7 +38,7 @@ function dev_subs2run (varargin)
             assignin('base', 'subject_start', subject_start)
             assignin('base', 'subject_end', subject_end)
             
-            disp(['You have selected to analyze subjects', string(subjects1([subject_start])), 'through', string(subjects1([subject_end])), '.']);
+            disp(['You have selected to analyze subjects', string(subjects([subject_start])), 'through', string(subjects([subject_end])), '.']);
         
         else 
         
