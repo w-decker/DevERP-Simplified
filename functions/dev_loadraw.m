@@ -2,11 +2,11 @@
 % Author: Will Decker
 % Usage: Importing and loading raw files of different formats (e.g., BrainVision, BioSemi, etc.)
 % Inputs:
-    %
+    % 'bv'                      -- String 'bv' loads brain vision files that correspond to your subject_start and subject_end
 
    % See https://github.com/w-decker/DevERP-Simplified/tree/main/functions or type devHELP in the command window.
 
-function dev_loadraw(varargin)
+function [ALLEEG, EEG, CURRENTSET, ALLCOM] = dev_loadraw(varargin)
 
     % load in subject to run
     if evalin('base', 'exist("subjects", "var")') == 1
@@ -54,3 +54,8 @@ function dev_loadraw(varargin)
         end
     end
 
+% Output variables to workspace
+assignin('caller', 'ALLEEG', ALLEEG);
+assignin('caller', 'EEG', EEG);
+assignin('caller', 'CURRENTSET', CURRENTSET);
+assignin('caller', 'ALLCOM', ALLCOM);

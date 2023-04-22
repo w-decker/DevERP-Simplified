@@ -37,6 +37,7 @@ function dev_IDsubjects (varargin)
             subjects = r;
             numsubjects = (length(s));
             
+            
             assignin('base', 'subjects', subjects)
             assignin('base', 'numsubjects', numsubjects) 
         end
